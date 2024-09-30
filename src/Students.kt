@@ -46,4 +46,3 @@ class Student(
         return "Student(id=$id, fullName='$lastName $firstName $patronymic', phone=$phone, telegram=$telegram, email=$email, git=$git)"
     }
 }
-//
