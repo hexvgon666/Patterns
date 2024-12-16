@@ -14,7 +14,7 @@ class Data_table(private val data: List<List<Any>>) {
     override fun toString(): String {
         val str = StringBuilder()
         for (row in data) {
-            str.append(row.joinToString(", ") { it.toString() }) // Ïðåîáðàçóåò êàæäóþ ñòðîêó â ñòðîêó
+            str.append(row.joinToString(", ") { it.toString() }) // преобразует данные в строку
             str.append("\n")
         }
         return str.toString()

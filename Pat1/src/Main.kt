@@ -113,4 +113,13 @@ fun main() {
     val datalist = Data_list_student_short(stArr)
     val dataTable = datalist.get_data()
     println(dataTable)
+
+    //№2.8
+    val datalist2 = Data_list_student_short(stArr)
+
+    println("Название полей: ${datalist2.get_names(0)}")
+
+    println("\n Записи")
+    val datatab = datalist2.get_data()
+    println(datatab)
 }
