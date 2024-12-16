@@ -1,6 +1,6 @@
 fun main() {
     val example_1 = Student(
-         1,
+        1,
         "Фолгимштейн",
         "Федор",
         "Крузинштейн",
@@ -8,6 +8,7 @@ fun main() {
         "@ROOMdoom",
         "RoomDoom@mail.ru",
         "https://github.com/Fedor"
+
     )
 
     val example_2 = Student(
@@ -61,7 +62,13 @@ fun main() {
         git = "https://github.com/Smyrk"
     )
 
-    valid.setContacts(phone = "+7-916-123-45-67", telegram = "johndoe", mail = "sdfasf@mail.ru")
+
+
+    valid.setContacts(phone = "+7-916-123-45-69", telegram = "johndoe", mail = "sdfasf@mail.ru")
+
+    valid.phone="+7-916-123-45-67";
+
+    println(valid)
 
     // Проверяем валидность данных после установки контактов
     val isValid = valid.validate()
@@ -76,3 +83,14 @@ fun main() {
     val hash = Student(example_hashMap)
     println(hash)
     println(validPhone)
+
+//lab2
+    // Пример строки для парсинга
+    val studentData = "1 Мирногов Кирилл Иванович +7-916-123-45-67 mirno_ivanov kirill@example.com kirill-git"
+    // Создание объекта Student с использованием нового конструктора
+    val studentFromString = Student(studentData)
+    // Вывод результата
+    println(studentFromString)
+    //№3 метод getInfo
+    println(studentFromString.getInfo())
+}

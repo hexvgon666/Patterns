@@ -1,7 +1,4 @@
-import java.io.File
-import java.io.FileNotFoundException
-
- open class Student(
+class Student(
     id: Int,
     surname: String,
     name: String,
@@ -10,8 +7,18 @@ import java.io.FileNotFoundException
     telegram: String? = null,
     email: String? = null,
     git: String? = null
-) : Student_super(id, git) {
-
+) {
+    var id: Int = id
+        get() {
+            return field
+        }
+        set(value) {
+            require(value > 0)
+            {
+                "ID должен быть больше 0"
+            }
+            field = value
+        }
     var surname: String = surname
         get() {
             return field
@@ -57,24 +64,28 @@ import java.io.FileNotFoundException
             checkMail(value)
             field = value
         }
+    var git: String? = git
+        get() {
+            return field
+        }
+        set(value) {
+            checkGit(value)
+            field = value
+        }
 
+    //lab2
     fun getInfo(): String
     {
         var field = "Ф.И.О. " + getSHName()
-
         field += " " + getContact()
         field += " " + getSHGIT()
-
         return field
-
     }
-
     fun getSHName(): String
     {
         var field = surname + " " + name + " " + patronymic
         return field
     }
-
     fun getSHGIT(): String
     {
         if(!git.isNullOrEmpty())
@@ -83,7 +94,6 @@ import java.io.FileNotFoundException
         }
         return "Ошибка GIT"
     }
-
     fun getContact(): String
     {
         if(!phone.isNullOrEmpty())
@@ -100,7 +110,6 @@ import java.io.FileNotFoundException
         }
         return "Ошибка нет контактов "
     }
-
     // Первичный конструктор, который принимает обязательные поля
     init {
         counter ++
@@ -120,7 +129,7 @@ import java.io.FileNotFoundException
         git: String? = null
     ) : this(id, surname, name, null, phone, telegram, email, git)
 
-//    constructor(_id:Int,_lastname:String,_name:String,_fathername:String,_phone:String?=null,_telegram:String?=null,_mail:String?=null,_git:String?=null)
+    //    constructor(_id:Int,_lastname:String,_name:String,_fathername:String,_phone:String?=null,_telegram:String?=null,_mail:String?=null,_git:String?=null)
 //    {
 //        id=_id
 //        surname=_lastname
@@ -131,8 +140,6 @@ import java.io.FileNotFoundException
 //        email=_mail
 //        git=_git
 //    }
-
-
     // Вторичный конструктор, который принимает HashMap
     constructor(hashStud: HashMap<String, Any?>) : this(
         (hashStud["id"] as? Int) ?: throw IllegalArgumentException("ID обязателен"),
@@ -194,54 +201,6 @@ import java.io.FileNotFoundException
                 throw IllegalArgumentException("Неправильный формат Git")
             }
         }
-
-        // Метод проверки файла
-        fun read_from_txt(filePath: String): List<Student> {
-
-            var stud = mutableListOf<Student>()
-
-            try {
-                val file = File(filePath)
-
-                // Проверяем, существует ли файл
-                if (!file.exists()) {
-                    println("Файл с указанным адресом не найден: $filePath")
-                    return stud // Возвращаем пустой список
-                }
-
-                // Считываем данные из файла и создаем объекты Student
-                var line = file.readLines()
-
-                try {
-                    for(lines in line)
-                    {
-                        val student = Student(lines)
-                        stud.add(student)
-                    }
-                } catch (e: Exception) {
-                    println("Ошибка при создании студента из строки: \"$line\". Причина: ${e.message}")
-                }
-            } catch (e: Exception) {
-                println("Ошибка при чтении файла: ${e.message}")
-            }
-
-            return stud // Возвращаем список студентов
-        }
-
-        fun write_to_txt(filePath: String, stud: List<Student>) {
-            try {
-                val file = File(filePath)
-                var text = ""
-
-                    for (student in stud) {
-                        text += (student.toString() + "\n")
-                    }
-                file.writeText(text)
-                println("Данные записаны в файл: $filePath")
-            } catch (e: Exception) {
-                println("Ошибка при записи в файл: ${e.message}")
-            }
-        }
     }
 
     // Метод для проверки наличия Git
@@ -272,7 +231,7 @@ import java.io.FileNotFoundException
                 "Email: '${email ?: "No"}', GIT: '${git ?: "NO"}')"
     }
 
-
+//lab2
     constructor(input: String) : this(
         id = input.split(" ")[0].toInt(),
         surname = input.split(" ")[1],
@@ -284,3 +243,5 @@ import java.io.FileNotFoundException
         git = input.split(" ").getOrNull(7)
     )
 }
+
+
