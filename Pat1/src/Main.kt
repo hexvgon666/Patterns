@@ -107,4 +107,10 @@ fun main() {
 
     //№9,10 запись в файл
     Student.write_to_txt("write_to.txt", students)
+
+    //№2.5 класс Data_list_student_short
+    val stArr = arrayOf(st)
+    val datalist = Data_list_student_short(stArr)
+    val dataTable = datalist.get_data()
+    println(dataTable)
 }

@@ -1,4 +1,4 @@
-class Data_list(val data: Array<Any>) {
+open class Data_list<T>(val data: Array<T>){
     private val select = mutableListOf<Int>()
     fun select(num:Int)
     {
@@ -11,13 +11,13 @@ class Data_list(val data: Array<Any>) {
     {
         return select
     }
-    fun get_names(id:Int): Array<String>
+    open fun get_names(id:Int): Array<String>
     {
         var name = data[id]!!::class.java.declaredFields.map { it.name }.toTypedArray()
         name[0] = id.toString()
         return name
     }
-    fun get_data(): Data_table
+    open fun get_data(): Data_table
     {
         var attr = mutableListOf<List<Any>>()
         for (id in select)
