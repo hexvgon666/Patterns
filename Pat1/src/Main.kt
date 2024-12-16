@@ -144,12 +144,14 @@ fun main() {
         println(stud_txt)
     }
         //3.1d
-    val col3 = 1
-    val row3 = 1
+    val col3 = 4
+    val row3 = 0
 
     val arr1 = listOf(
             listOf("Мирногов Кирилл Иванович", "kirill-git", "+7-916-123-45-67"),
-            listOf("Мишков Иван Витальевич", "Iva-git", "+7-977-111-45-56")
+            listOf("Мишков Иван Витальевич", "Iva1-git", "+7-977-111-45-56"),
+        listOf("Мишков Иван Витальевич", "Iva2-git", "+7-977-111-45-56"),
+        listOf("Мишков Иван Витальевич", "Iva3-git", "+7-977-111-45-56")
     )
 
 
@@ -157,7 +159,12 @@ fun main() {
     val students3 = arr1.mapIndexed { index, studentData ->
         Student_Short(index, studentData[0], studentData[1], studentData[2])
     }
-    val shortlist = Student_list_txt.get_k_n_student_short_list(row3, col3, students3)
+
+    // Сортируем студентов по Фамилия и Инициалы (e)
+    val sortedStudents = Student_list_txt.sortFIO(students3)
+
+    // d.
+    val shortlist = Student_list_txt.get_k_n_student_short_list(row3, col3, sortedStudents)
 
     for(shortstud in shortlist.data)
     {
