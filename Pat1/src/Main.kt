@@ -88,13 +88,20 @@ fun main() {
     // Пример строки для парсинга
     val studentData = "7 Мирногов Кирилл Иванович +7-916-136-45-67 mirno_ivanov kirill@example.com kirill-git"
     // Создание объекта Student с использованием нового конструктора
-    val studentFromString = Student(studentData)
+    val stud = Student(studentData)
     // Вывод результата
-    println(studentFromString)
+    println(stud)
     //№3 метод getInfo
-    println(studentFromString.getInfo())
+    println(stud.getInfo())
 
     //№4 класс Student_short
-    var st = Student_Short(studentFromString)
+    var st = Student_Short(stud)
     println(st)
+
+    //№7 чтение из файла
+    val students = Student.read_from_txt("C:\\Users\\hexvgon\\IdeaProjects\\Pat1\\src\\read_from.txt")
+    for(stud in students)
+    {
+        println(stud)
+    }
 }
