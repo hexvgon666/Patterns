@@ -1,6 +1,6 @@
 import java.io.File
 import java.io.FileNotFoundException
-class Student(
+open class Student(
     id: Int,
     surname: String,
     name: String,

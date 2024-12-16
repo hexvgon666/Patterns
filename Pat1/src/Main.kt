@@ -122,4 +122,12 @@ fun main() {
     println("\n Записи")
     val datatab = datalist2.get_data()
     println(datatab)
+
+    //lab 3
+    //№3.1
+    val stud_listTXT = Student_list_txt.read_from_txt("C:\\Users\\hexvgon\\IdeaProjects\\Pat1\\src\\read_from.txt")
+    for(stud_txt in stud_listTXT)
+    {
+        println(stud_txt)
+    }
 }
