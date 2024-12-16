@@ -86,11 +86,15 @@ fun main() {
 
 //lab2
     // Пример строки для парсинга
-    val studentData = "1 Мирногов Кирилл Иванович +7-916-13-45-67 mirno_ivanov kirill@example.com kirill-git"
+    val studentData = "7 Мирногов Кирилл Иванович +7-916-136-45-67 mirno_ivanov kirill@example.com kirill-git"
     // Создание объекта Student с использованием нового конструктора
     val studentFromString = Student(studentData)
     // Вывод результата
     println(studentFromString)
     //№3 метод getInfo
     println(studentFromString.getInfo())
+
+    //№4 класс Student_short
+    var st = Student_Short(studentFromString)
+    println(st)
 }
