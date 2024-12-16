@@ -108,6 +108,19 @@ fun main() {
     //№9,10 запись в файл
     Student.write_to_txt("write_to.txt", students)
 
+    //Data_table
+    val arr = listOf(
+        listOf("Мирногов Кирилл Иванович", "kirill-git", "+7-916-123-45-67"),
+        listOf("Мишков Иван Витальевич", "Iva-git", "+7-977-111-45-56")
+    )
+    val datTab = Data_table(arr)
+    println("Количество строк ${datTab.GetNumCol()}")
+    println("Количество строк ${datTab.GetNumRow()}")
+    val col = 0
+    val row = 1
+    println("Запись на строке $row и столбце $col: ${datTab.GetElem(row,col)}")
+    println(datTab)
+
     //№2.5 класс Data_list_student_short
     val stArr = arrayOf(st)
     val datalist = Data_list_student_short(stArr)
@@ -129,5 +142,25 @@ fun main() {
     for(stud_txt in stud_listTXT)
     {
         println(stud_txt)
+    }
+        //3.1d
+    val col3 = 1
+    val row3 = 1
+
+    val arr1 = listOf(
+            listOf("Мирногов Кирилл Иванович", "kirill-git", "+7-916-123-45-67"),
+            listOf("Мишков Иван Витальевич", "Iva-git", "+7-977-111-45-56")
+    )
+
+
+    // Преобразуем List<List<String>> в List<Student_Short>
+    val students3 = arr1.mapIndexed { index, studentData ->
+        Student_Short(index, studentData[0], studentData[1], studentData[2])
+    }
+    val shortlist = Student_list_txt.get_k_n_student_short_list(row3, col3, students3)
+
+    for(shortstud in shortlist.data)
+    {
+        println("Id: ${shortstud.id}, F.I.O: ${shortstud.surnameIn}, Git: ${shortstud.git}, Contact: ${shortstud.contact}")
     }
 }
