@@ -73,7 +73,7 @@ class Student(
             field = value
         }
 
-    //lab2
+    //lab2 метод getInfo 3 задание
     fun getInfo(): String
     {
         var field = "Ф.И.О. " + getSHName()
@@ -231,7 +231,7 @@ class Student(
                 "Email: '${email ?: "No"}', GIT: '${git ?: "NO"}')"
     }
 
-//lab2
+//lab2 Парсер строки
     constructor(input: String) : this(
         id = input.split(" ")[0].toInt(),
         surname = input.split(" ")[1],
