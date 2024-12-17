@@ -1,0 +1,13 @@
+---
+- id: 1
+  git: "github.com/ivanov_updated"
+  surname: "Ivanov"
+  name: "Ivan"
+  patronymic: "Ivanovich"
+  phone: "111222333"
+  telegram: "ivanov_updated"
+  email: "ivanov_new@example.com"
+  contact: "Телефон: 111222333"
+  shgit: "GIT: github.com/ivanov_updated"
+  shname: "Ivanov Ivan Ivanovich"
+  info: "Ф.И.О. Ivanov Ivan Ivanovich Телефон: 111222333 GIT: github.com/ivanov_updated"

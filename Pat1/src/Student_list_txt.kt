@@ -65,7 +65,7 @@ class Student_list_txt: Student(0, "", ""){
             val index = students.indexOfFirst { it.id == id }
             return if (index != -1) {
                 students.removeAt(index)
-                println("Студент с ID $id был обновлён.")
+                println("Студент с ID $id был удален.")
                 true
             } else {
                 println("Студент с ID $id не найден.")

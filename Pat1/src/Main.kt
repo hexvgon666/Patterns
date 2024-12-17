@@ -185,4 +185,36 @@ fun main() {
     //get_student_short_count Получить количество элементов
     //количество студентов
     println("Количество студентов: ${Student_list_txt.getStudentShortCount()}")
+
+    //JSON
+    val filePath = "C:\\Users\\hexvgon\\IdeaProjects\\Pat1\\src\\JSON.json"
+    val studentsList = Students_list_JSON(filePath)
+    studentsList.addStudent("Иванов", "Филипп", "Малевович", "+7-988-124-45-55", "ivan2001", "ivan@example.com", "ivan-git")
+    val count = studentsList.getStudentCount()
+    println("Количество: $count")
+    val student = studentsList.getStudentById(1)
+    println("Cтудент: $student")
+    studentsList.removeStudent(1)
+    val newCount = studentsList.getStudentCount()
+    println("Количество после удаления: $newCount")
+
+    //YAML
+    val studentsYAML = Students_list_YAML("C:\\Users\\hexvgon\\IdeaProjects\\Pat1\\src\\YAML.yaml")
+    studentsYAML.addStudent(surname = "Крюкович", name = "Владлен", patronymic = "Киреевич", phone = "+7-988-124-45-55", telegram = "vov_tel", email = "vov@example.com", git = "github.com/vov")
+    studentsYAML.addStudent(surname = "Маминов", name = "Имануил", patronymic = "Петрович", phone = "+7-988-124-45-66", telegram = "rov_tel", email = "rov@example.com", git = "github.com/rov")
+//    val studentsYAML = listOf(
+//        Student(1, "Ivanov", "Ivan", "Ivanovich", "123456789", "ivanov_telegram", "ivanov@example.com", "github.com/ivanov"),
+//        Student(2, "Petrov", "Petr", "Petrovich", "987654321", "petrov_telegram", "petrov@example.com", "github.com/petrov")
+//    )
+//    val objectMapper = ObjectMapper(YAMLFactory())
+//    val yamlFile = File("D:\\4_курс\\Libraries\\FileYAML.yaml")
+//    // Сериализация данных в YAML
+//    objectMapper.writeValue(yamlFile, studentsYAML)
+//
+//    println("Файл students.yaml успешно создан.")
+    val studYAML = studentsYAML.getStudentById(1)
+    println("Студент с ID 1: $studYAML")
+    studentsYAML.repStudId(1, surname = "Ivanov", name = "Ivan", patronymic = "Ivanovich", phone = "111222333", telegram = "ivanov_updated", email = "ivanov_new@example.com", git = "github.com/ivanov_updated")
+    studentsYAML.removeStudent(2)
+    println("Количество студентов после удаления: ${studentsYAML.getStudentCount()}")
 }
