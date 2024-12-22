@@ -1,0 +1,4 @@
+- !!Student {email: ivan@example.com, git: 'https://github.com/ivan', id: 1, name: Иван,
+  patronymic: null, phone: '123456789', surname: Иванов, telegram: null}
+- !!Student {email: petr@example.com, git: null, id: 2, name: Петр, patronymic: Сидорович,
+  phone: '987654321', surname: Петров, telegram: '@petrov'}
