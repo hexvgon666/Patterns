@@ -2,7 +2,7 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.ResultSet
-class Students_list_DB private constructor() {
+class Students_list_DB private constructor():StudentListInterface {
     private val url = "jdbc:postgresql://localhost:5433/Students"
     private val user = "postgres"
     private val password = "123"
@@ -16,7 +16,7 @@ class Students_list_DB private constructor() {
         }
 
 
-    fun getStudentById(id: Int): Student? {
+    override fun getStudentById(id: Int): Student? {
         var student: Student? = null
         val query = "SELECT * FROM student WHERE id = ?"
         val conn = DriverManager.getConnection(url, user, password)
@@ -44,7 +44,39 @@ class Students_list_DB private constructor() {
         return student
     }
 
-    fun get_k_n_student_short_list(k: Int, n: Int): MutableList<Student_Short> {
+    //    override fun get_k_n_student_short_list(k: Int, n: Int): MutableList<Student_Short> {
+//        val query = "SELECT id, surname, name, patronymic, phone, telegram, email, git FROM student ORDER BY id LIMIT ? OFFSET ?"
+//        val studentList = mutableListOf<Student_Short>()
+//        val conn = DriverManager.getConnection(url, user, password)
+//        val pstmt = conn.prepareStatement(query)
+//
+//        return try {
+//            pstmt.setInt(1, n)  // Óñòàíîâêà LIMIT
+//            pstmt.setInt(2, k)  // Óñòàíîâêà OFFSET
+//            val rs = pstmt.executeQuery()
+//
+//            while (rs.next()) {
+//                val id = rs.getInt("id")
+//                val surname = rs.getString("surname")
+//                val name = rs.getString("name")
+//                val patronymic = rs.getString("patronymic")
+//                val phone = rs.getString("phone")
+//                val telegram = rs.getString("telegram")
+//                val email = rs.getString("email")
+//                val git = rs.getString("git")
+//                studentList.add(Student_Short(id, surname + name + patronymic, git, phone + telegram + email))
+//            }
+//            studentList  // Âîçâðàùàåì èòîãîâûé ñïèñîê ñòóäåíòîâ
+//        } catch (e: Exception) {
+//            e.printStackTrace()
+//            mutableListOf()  // Âîçâðàùàåì ïóñòîé ñïèñîê â ñëó÷àå îøèáêè
+//        } finally {
+//            pstmt.close() // Çàêðûâàåì PreparedStatement
+//            conn.close() // Çàêðûâàåì ñîåäèíåíèå
+//        }
+//    }
+
+    override fun get_k_n_student_short_list(k: Int, n: Int): MutableList<Student_Short> {
         val query = "SELECT id, surname, name, patronymic, phone, telegram, email, git FROM student ORDER BY id LIMIT ? OFFSET ?"
         val studentList = mutableListOf<Student_Short>()
         val conn = DriverManager.getConnection(url, user, password)
@@ -59,22 +91,22 @@ class Students_list_DB private constructor() {
                 val surname = rs.getString("surname")
                 val name = rs.getString("name")
                 val patronymic = rs.getString("patronymic")
-                val phone = rs.getString("phone")
-                val telegram = rs.getString("telegram")
-                val email = rs.getString("email")
-                val git = rs.getString("git")
-                studentList.add(Student_Short(id, surname + name + patronymic, git, phone + telegram + email))
+
+                val input = "$surname $name $patronymic"
+
+                val studentShort = Student_Short(id, input, rs.getString("git"),  "${rs.getString("phone")} ${rs.getString("telegram")} ${rs.getString("email")}")
+                studentList.add(studentShort)
             }
-            studentList  // Âîçâðàùàåì èòîãîâûé ñïèñîê ñòóäåíòîâ
+            studentList
         } catch (e: Exception) {
             e.printStackTrace()
-            mutableListOf()  // Âîçâðàùàåì ïóñòîé ñïèñîê â ñëó÷àå îøèáêè
+            mutableListOf()
         } finally {
-            pstmt.close() // Çàêðûâàåì PreparedStatement
-            conn.close() // Çàêðûâàåì ñîåäèíåíèå
+            pstmt.close()
+            conn.close()
         }
     }
-    fun addStudent(student: Student): Boolean {
+    override fun addStudent(student: Student): Boolean {
         val query = "INSERT INTO student (surname, name, patronymic, phone, telegram, email, git) VALUES (?, ?, ?, ?, ?, ?, ?)"
         val conn = DriverManager.getConnection(url, user, password)
         val pstmt = conn.prepareStatement(query)
@@ -97,7 +129,7 @@ class Students_list_DB private constructor() {
     }
 
 
-    fun updateStudent(student: Student): Boolean {
+    override fun updateStudent(student: Student): Boolean {
         val query = "UPDATE student SET surname = ?, name = ?, patronymic = ?, phone = ?, telegram = ?, email = ?, git = ? WHERE id = ?"
         val conn = DriverManager.getConnection(url, user, password)
         val pstmt = conn.prepareStatement(query)
@@ -119,7 +151,7 @@ class Students_list_DB private constructor() {
             conn.close() // Çàêðûâàåì ñîåäèíåíèå
         }
     }
-    fun deleteStudent(studentId: Int): Boolean {
+    override fun deleteStudent(studentId: Int): Boolean {
         val query = "DELETE FROM student WHERE id = ?"
         val conn = DriverManager.getConnection(url, user, password)
         val pstmt = conn.prepareStatement(query)
@@ -134,7 +166,7 @@ class Students_list_DB private constructor() {
             conn.close() // Çàêðûâàåì ñîåäèíåíèå
         }
     }
-    fun getStudentCount(): Int {
+    override fun getStudentCount(): Int {
         val query = "SELECT COUNT(*) FROM student"
         val conn = DriverManager.getConnection(url, user, password)
         val pstmt = conn.prepareStatement(query)
