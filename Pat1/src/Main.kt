@@ -209,7 +209,7 @@ fun main() {
                     "Phone: ${student.phone}, Telegram: ${student.telegram}, Email: ${student.email}, Git: ${student.git}"
         )
     }
-    val studentDb = Students_list_DB()
+    val studentDb = Students_list_DB.getInstance()
 
     val studentId = 7
     val student = studentDb.getStudentById(studentId)
@@ -226,8 +226,8 @@ fun main() {
     // c Добавить
     val studentAdd =
         Student(0, "Филион", "Иван", "Максимович", "+7-977-111-45-56", "@ivanov", "ivan@mail.com", "Iva-git")
-    val db = Students_list_DB()
-    if (db.addStudent(studentAdd)) {
+
+    if (studentDb.addStudent(studentAdd)) {
         println("Студент был добавлен.")
     } else {
         println("Произошла ошибка при добавлении студента.")
@@ -235,8 +235,8 @@ fun main() {
     // Получить список k по счету n
     val k = 1 // Индекс, с которого нужно начать
     val n = 2 // Количество студентов, которое нужно получить
-    val studentget = Students_list_DB()
-    val studentsNK = studentget.get_k_n_student_short_list(k, n)
+
+    val studentsNK = studentDb.get_k_n_student_short_list(k, n)
     for (student in studentsNK) {
         println(
             "ID: ${student.id}, FIO: ${student.surnameIn}, " +

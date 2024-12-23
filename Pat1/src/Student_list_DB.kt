@@ -2,10 +2,20 @@ import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.ResultSet
-class Students_list_DB {
+class Students_list_DB private constructor() {
     private val url = "jdbc:postgresql://localhost:5433/Students"
     private val user = "postgres"
     private val password = "123"
+
+    companion object {
+
+        private val instance: Students_list_DB = Students_list_DB()
+        fun getInstance(): Students_list_DB {
+            return instance
+            }
+        }
+
+
     fun getStudentById(id: Int): Student? {
         var student: Student? = null
         val query = "SELECT * FROM student WHERE id = ?"
