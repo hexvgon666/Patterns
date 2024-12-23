@@ -7,8 +7,8 @@ class DatabaseSelect {
         val students: MutableList<Student> = ArrayList()
         try {
             DriverManager.getConnection(url, user, password).use { conn ->
-                conn.createStatement().use { stmt ->S
-                    stmt.executeQuery("SELECT * FROM students").use { rs ->
+                conn.createStatement().use { stmt ->
+                    stmt.executeQuery("SELECT * FROM student").use { rs ->
                         while (rs.next()) {
                             val id = rs.getInt("id")
                             val surname = rs.getString("surname")

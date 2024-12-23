@@ -66,7 +66,7 @@ fun main() {
 
     valid.setContacts(phone = "+7-916-123-45-69", telegram = "johndoe", mail = "sdfasf@mail.ru")
 
-    valid.phone="+7-916-123-45-67";
+    valid.phone = "+7-916-123-45-67";
 
     println(valid)
 
@@ -100,8 +100,7 @@ fun main() {
 
     //№7,8 чтение из файла
     val students = Student.read_from_txt("C:\\Users\\hexvgon\\IdeaProjects\\Pat1\\src\\read_from.txt")
-    for(stud in students)
-    {
+    for (stud in students) {
         println(stud)
     }
 
@@ -118,7 +117,7 @@ fun main() {
     println("Количество строк ${datTab.GetNumRow()}")
     val col = 0
     val row = 1
-    println("Запись на строке $row и столбце $col: ${datTab.GetElem(row,col)}")
+    println("Запись на строке $row и столбце $col: ${datTab.GetElem(row, col)}")
     println(datTab)
 
     //№2.5 класс Data_list_student_short
@@ -168,7 +167,15 @@ fun main() {
     //путь к файлу
     val fileYaml = "write_file.yaml"
 
-    studentManageryaml.addStudent("Иванов", "Иван", null, "123456789", null, "ivan@example.com", "https://github.com/ivan")
+    studentManageryaml.addStudent(
+        "Иванов",
+        "Иван",
+        null,
+        "123456789",
+        null,
+        "ivan@example.com",
+        "https://github.com/ivan"
+    )
     studentManageryaml.addStudent("Петров", "Петр", "Сидорович", "987654321", "@petrov", "petr@example.com", null)
     // Запись в файл
     studentManageryaml.writeToFile(fileYaml)
@@ -179,7 +186,15 @@ fun main() {
     //путь к файлу
     val fileTxt = "write_file.txt"
 
-    studentManagerTxt.addStudent("Иванов", "Иван", null, "123456789", null, "ivan@example.com", "https://github.com/ivan")
+    studentManagerTxt.addStudent(
+        "Иванов",
+        "Иван",
+        null,
+        "123456789",
+        null,
+        "ivan@example.com",
+        "https://github.com/ivan"
+    )
     studentManagerTxt.addStudent("Петров", "Петр", "Сидорович", "987654321", "@petrov", "petr@example.com", null)
     // Запись в файл
     studentManagerTxt.writeToFile(fileTxt)
@@ -189,7 +204,61 @@ fun main() {
     val dbManager = DatabaseSelect()
     val students4 = dbManager.getAllStudents()
     for (student in students4) {
-        println("ID: ${student.id}, FIO: ${student.surname} ${student.name} ${student.patronymic}, " +
-                "Phone: ${student.phone}, Telegram: ${student.telegram}, Email: ${student.email}, Git: ${student.git}")
+        println(
+            "ID: ${student.id}, FIO: ${student.surname} ${student.name} ${student.patronymic}, " +
+                    "Phone: ${student.phone}, Telegram: ${student.telegram}, Email: ${student.email}, Git: ${student.git}"
+        )
     }
+    val studentDb = Students_list_DB()
+
+    val studentId = 7
+    val student = studentDb.getStudentById(studentId)
+
+    if (student != null) {
+        println(
+            "ID: ${student.id}, FIO: ${student.surname} ${student.name} ${student.patronymic}, " +
+                    "Phone: ${student.phone}, Telegram: ${student.telegram}, Email: ${student.email}, Git: ${student.git}"
+        )
+    } else {
+        println("Студент с ID $studentId не найден.")
+    }
+
+    // c Добавить
+    val studentAdd =
+        Student(0, "Филион", "Иван", "Максимович", "+7-977-111-45-56", "@ivanov", "ivan@mail.com", "Iva-git")
+    val db = Students_list_DB()
+    if (db.addStudent(studentAdd)) {
+        println("Студент был добавлен.")
+    } else {
+        println("Произошла ошибка при добавлении студента.")
+    }
+    // Получить список k по счету n
+    val k = 1 // Индекс, с которого нужно начать
+    val n = 2 // Количество студентов, которое нужно получить
+    val studentget = Students_list_DB()
+    val studentsNK = studentget.get_k_n_student_short_list(k, n)
+    for (student in studentsNK) {
+        println(
+            "ID: ${student.id}, FIO: ${student.surnameIn}, " +
+                    "Phone: ${student.contact} Git: ${student.git}"
+        )
+    }
+
+    //d. Заменить элемент
+    val upStudent =
+        Student(9, "Фланцов", "Пет", "Иванович", "+7-977-111-45-56", "@ivanov", "ivan@mail.com", "Iva-git")
+    val Update = studentDb.updateStudent(upStudent)
+    if (Update) {
+        println("Студент обновлен.")
+    } else {
+        println("Ошибка при обновлении студента.")
+    }
+    //e. Удалить элемент
+//    val Delete = studentDb.deleteStudent(9)
+//    if (Delete) {
+//        println("Студент удалён.")
+//    } else {
+//        println("Ошибка при удалении.")
+//    }
+//    println("Количество студентов " + studentDb.getStudentCount())
 }

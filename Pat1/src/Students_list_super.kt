@@ -52,7 +52,7 @@ open class Students_list_super {
     fun getStudentCount(): Int {
         return students.size
     }
-    fun getStudentById(id: Int): Student? {
+    open fun getStudentById(id: Int): Student? {
         return students.find { it.id == id }
     }
 }
