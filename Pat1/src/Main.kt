@@ -202,7 +202,7 @@ fun main() {
     studentManagerTxt.writeToFile(fileTxt)
 
     // lab 4
-    // номер 5 выполнение select
+    // номер 4.5 выполнение select
     val dbManager = DatabaseSelect()
     val students4 = dbManager.getAllStudents()
     for (student in students4) {
@@ -211,6 +211,9 @@ fun main() {
                     "Phone: ${student.phone}, Telegram: ${student.telegram}, Email: ${student.email}, Git: ${student.git}"
         )
     }
+
+    // номер 4.8 Students_list_DB паттерн одиночка
+    // a.	Получить объект класса Student по ID
     val studentDb = Students_list_DB.getInstance()
 
     val studentId = 7
@@ -226,14 +229,14 @@ fun main() {
     }
 
     // c Добавить
-    val studentAdd =
-        Student(0, "Филион", "Иван", "Максимович", "+7-977-111-45-56", "@ivanov", "ivan@mail.com", "Iva-git")
-
-    if (studentDb.addStudent(studentAdd)) {
-        println("Студент был добавлен.")
-    } else {
-        println("Произошла ошибка при добавлении студента.")
-    }
+//    val studentAdd =
+//        Student(0, "Филион", "Иван", "Максимович", "+7-977-111-45-56", "@ivanov", "ivan@mail.com", "Iva-git")
+//
+//    if (studentDb.addStudent(studentAdd)) {
+//        println("Студент был добавлен.")
+//    } else {
+//        println("Произошла ошибка при добавлении студента.")
+//    }
     // Получить список k по счету n
     val k = 1 // Индекс, с которого нужно начать
     val n = 2 // Количество студентов, которое нужно получить
@@ -264,6 +267,7 @@ fun main() {
 //    }
 //    println("Количество студентов " + studentDb.getStudentCount())
 
+    //lab 5
     println("№5")
 
     // Инициализация StudentList с путем к файлу в формате JSON

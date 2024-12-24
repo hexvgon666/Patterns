@@ -1,7 +1,9 @@
+//лр 4.8 одиночка
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.PreparedStatement
 import java.sql.ResultSet
+// 5.2.	Применить паттерн адаптер к классам Students_list_DB
 class Students_list_DB private constructor():StudentListInterface {
     private val url = "jdbc:postgresql://localhost:5433/Students"
     private val user = "postgres"

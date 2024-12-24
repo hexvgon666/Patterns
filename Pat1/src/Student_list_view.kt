@@ -1,3 +1,4 @@
+// lab 6.1-6.4
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -60,15 +61,17 @@ class Student_list_view(private val studentsList: Students_list_super) {
         val panel = JPanel(BorderLayout())
         val constraints = GridBagConstraints()
 
-        // Область фильтрации
+// 6.4 Область фильтрации
+
         val filterPanel = JPanel(GridBagLayout())
+        filterPanel.background = Color(230, 230, 250)
         // Метод для добавления компонентов с настройками
         fun addComp(component: Component, gridX: Int, gridY: Int) {
             constraints.gridx = gridX
             constraints.gridy = gridY
             constraints.fill = GridBagConstraints.HORIZONTAL
             constraints.weightx = 1.0
-            constraints.insets = Insets(5, 5, 5, 5) // Отступы вокруг компонента
+            constraints.insets = Insets(10, 10, 10, 10) // Отступы вокруг компонента
             filterPanel.add(component, constraints)
         }
 
@@ -389,6 +392,8 @@ class Student_list_view(private val studentsList: Students_list_super) {
     }
 
 }
+
+// 6.6. невозможность для ПОЛЬЗОВАТЕЛЯ менять содержимое полей таблицы вручную
 class NonEditableTableModel(columnNames: Array<String>) : DefaultTableModel(columnNames, 0) {
     override fun isCellEditable(row: Int, column: Int): Boolean {
         return false // Запрет на редактирование всех ячеек

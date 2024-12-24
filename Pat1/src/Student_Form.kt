@@ -1,3 +1,4 @@
+// lab 6.5-6.7 добавить кнопки
 import javax.swing.*;
 import java.awt.*;
 class Student_Form(private val student: Student? = null) {

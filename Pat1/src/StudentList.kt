@@ -1,4 +1,5 @@
-
+//lab 5.2.	Применить паттерн адаптер к классам Students_list_DB, Students_list_JSON,
+// выделив класс Student_list, переведя весь функционал в стратегию, обеспечив одинаковый интерфейс с помощью паттерна адаптер.
 interface StudentListInterface {
     fun getStudentById(id: Int): Student?
     fun get_k_n_student_short_list(k: Int, n: Int): MutableList<Student_Short>

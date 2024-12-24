@@ -1,3 +1,4 @@
+//лр 4.5 Протестируйте выполнение select запроса из этой таблицы из программы на kotlin.
 import java.sql.DriverManager
 class DatabaseSelect {
     private val url = "jdbc:postgresql://localhost:5433/Students"
